@@ -1,0 +1,737 @@
+╭─── Claude Code v2.1.177 ─────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                Welcome back Swapnil!               │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ What's new              │
+│                        ▘▘ ▝▝                       │ Session titles are now… │
+│     Sonnet 4.6 · Claude Pro ·                      │ Added `footerLinksRege… │
+│     swapnil.katiyar@greyamp.com's Organization     │ Improved Bedrock crede… │
+│             ~/Desktop/expense-tracker              │ /release-notes for more │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+❯ /rename landing page improvements 
+  ⎿  Session renamed to: landing page improvements
+
+❯ Add two links to the footer in @templates/base.html:                          
+                                                                                
+  - "Terms and Conditions"                                                      
+  - "Privacy Policy"                                                            
+                                                                                
+  Both should be plain text links, no special styling needed for now.           
+  Point both to "#" as placeholder hrefs since the pages don't exist yet.       
+                                                                                
+  Do not modify anything else on the page.                                      
+  ⎿  Read templates/base.html (44 lines)
+  ⎿  ⧉ Selected 9 lines from file.txt in Visual Studio Code
+
+⏺ Update(templates/base.html)
+  ⎿  Added 2 lines
+      34              <span class="brand-icon">◈</span>
+      35              <span class="footer-name">Spendly</span>
+      36              <p class="footer-copy">Track every rupee. Own your 
+          finances.</p>
+      37 +            <a href="#">Terms and Conditions</a>               
+      38 +            <a href="#">Privacy Policy</a>                     
+      39          </div>
+      40      </footer>
+      41  
+
+⏺ Done. Added both links inside the footer's footer-inner div, after the
+  existing copy text.
+
+✻ Worked for 9s
+
+! python3 app.py                                                                
+  ⎿  Command running in background with ID: b1bschtug. Output is being writ
+     ten to: /private/tmp/claude-501/-Users-swapnilkatiyar-Desktop-expense-
+     tracker/31e03066-37db-4078-8e2d-af6ca5e40bc6/tasks/b1bschtug.output. Y
+     … +2 lines (ctrl+o to expand)
+
+! git add .                                                                     
+  ⎿  (Bash completed with no output)
+
+! git commit -m "landing: add terms and privacy links to footer”                
+  ⎿  (eval):1: unmatched "
+
+※ recap: Working on landing page improvements for the Spendly expense tracker. Added Terms and Conditions and Privacy Policy placeholder links to the base template footer. No immediate next action is pending. (disable recaps in /config)
+
+! git commit -m "landing: add terms and privacy links to footer”                
+  ⎿  (eval):1: unmatched "
+
+!  git commit -m "landing: add terms and privacy links to footer"               
+  ⎿  [main a156c2d] landing: add terms and privacy links to footer
+      3 files changed, 160 insertions(+)
+      create mode 100644 file.txt
+      create mode 100644 swapnil.md
+
+❯                                                                               
+  Create a "Terms and Conditions" page for Spendly.                             
+                                                                                
+  1. Add a new route in [@app.py](http://app.py/):                              
+  GET /terms → renders templates/terms.html                                     
+  2. Create templates/terms.html with generic terms and conditions              
+  content appropriate for a personal expense tracking app.                      
+  Include sections like: Acceptance of Terms, Use of Service,                   
+  User Data, Limitations of Liability, and Changes to Terms.                    
+  Extend base.html if it exists, otherwise match the style of                   
+  landing.html.                                                                 
+  3. In @templates/landing.html, update the "Terms and Conditions"              
+  footer link href from "#" to "/terms".                                        
+  ⎿  Read templates/landing.html (93 lines)
+  ⎿  ⧉ Selected 13 lines from file.txt in Visual Studio Code
+
+⏺ Let me read app.py before making changes.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Now I'll make all three changes in parallel: add the route, create the
+  template, and update the footer link.
+
+⏺ Update(app.py)
+  ⎿  Added 5 lines
+      26  # Placeholder routes — students will implement these           
+                 #
+      27  # -------------------------------------------------------------
+          ----- #
+      28  
+      29 +@app.route("/terms")                                           
+      30 +def terms():                                                   
+      31 +    return render_template("terms.html")                       
+      32 +                                                               
+      33 +                                                               
+      34  @app.route("/logout")
+      35  def logout():
+      36      return "Logout — coming in Step 3"
+
+⏺ Write(templates/terms.html)
+  ⎿  Wrote 39 lines to templates/terms.html
+       1 {% extends "base.html" %}
+       2 
+       3 {% block title %}Terms and Conditions — Spendly{% endblock %}
+       4 
+       5 {% block content %}
+       6 
+       7 <section class="terms-page">
+       8     <div class="terms-inner">
+       9         <h1 class="terms-title">Terms and Conditions</h1>
+      10         <p class="terms-updated">Last updated: June 2026</p>
+     … +45 lines (ctrl+o to expand)
+
+⏺ Update(templates/base.html)
+  ⎿  Added 1 line, removed 1 line
+      34              <span class="brand-icon">◈</span>
+      35              <span class="footer-name">Spendly</span>
+      36              <p class="footer-copy">Track every rupee. Own your 
+          finances.</p>
+      37 -            <a href="#">Terms and Conditions</a>               
+      37 +            <a href="/terms">Terms and Conditions</a>          
+      38              <a href="#">Privacy Policy</a>
+      39          </div>
+      40      </footer>
+
+⏺ All three changes are done:
+
+  - app.py — added GET /terms route rendering terms.html
+  - templates/terms.html — created with five sections (Acceptance of Terms, Use
+  of Service, User Data, Limitations of Liability, Changes to Terms), extending
+  base.html
+  - templates/base.html — updated the "Terms and Conditions" footer link from #
+  to /terms
+
+✻ Crunched for 12s
+
+❯ Also make sure the appreance of @templates/terms.html matches the website     
+  theme.                                                                        
+  ⎿  Read templates/terms.html (40 lines)
+  ⎿  ⧉ Selected 13 lines from file.txt in Visual Studio Code
+⏺ Let me check the existing CSS to match the theme properly.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Now I have a full picture of the design system. I'll add matching CSS to
+  style.css and tighten up the terms.html markup to use it properly.
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 46 lines
+      508  }
+      509  
+      510  /* -----------------------------------------------------------
+           ------- */
+      511 +/* Terms / static content pages                               
+          +         */                                                   
+      512 +/* -----------------------------------------------------------
+          +------- */                                                    
+      513 +                                                              
+      514 +.terms-page {                                                 
+      515 +    padding: 5rem 2rem 6rem;                                  
+      516 +}                                                             
+      517 +                                                              
+      518 +.terms-inner {                                                
+      519 +    max-width: 720px;                                         
+      520 +    margin: 0 auto;                                           
+      521 +}                                                             
+      522 +                                                              
+      523 +.terms-title {                                                
+      524 +    font-family: var(--font-display);                         
+      525 +    font-size: clamp(2rem, 4vw, 3rem);                        
+      526 +    letter-spacing: -0.02em;                                  
+      527 +    color: var(--ink);                                        
+      528 +    margin-bottom: 0.5rem;                                    
+      529 +}                                                             
+      530 +                                                              
+      531 +.terms-updated {                                              
+      532 +    font-size: 0.85rem;                                       
+      533 +    color: var(--ink-faint);                                  
+      534 +    margin-bottom: 3rem;                                      
+      535 +    padding-bottom: 2rem;                                     
+      536 +    border-bottom: 1px solid var(--border);                   
+      537 +}                                                             
+      538 +                                                              
+      539 +.terms-section {                                              
+      540 +    margin-bottom: 2.5rem;                                    
+      541 +}                                                             
+      542 +                                                              
+      543 +.terms-section h2 {                                           
+      544 +    font-family: var(--font-display);                         
+      545 +    font-size: 1.25rem;                                       
+      546 +    color: var(--ink);                                        
+      547 +    margin-bottom: 0.75rem;                                   
+      548 +}                                                             
+      549 +                                                              
+      550 +.terms-section p {                                            
+      551 +    font-size: 0.975rem;                                      
+      552 +    color: var(--ink-muted);                                  
+      553 +    line-height: 1.8;                                         
+      554 +}                                                             
+      555 +                                                              
+      556 +/* -----------------------------------------------------------
+          +------- */                                                    
+      557  /* Responsive                                                 
+                    */
+      558  /* -----------------------------------------------------------
+           ------- */
+      559  
+
+⏺ The CSS uses the same design tokens as the rest of the site (--font-display,
+  --ink, --ink-muted, --ink-faint, --border). The terms.html template already
+  references these classes correctly, so no template changes are needed.
+
+  The page will render with:
+  - A serif display title matching the hero/CTA headings
+  - A muted "Last updated" line separated by the same border style used
+  throughout
+  - Section headings in DM Serif Display at a scale consistent with
+  .feature-title
+  - Body text in --ink-muted at the same line-height used in features and CTA
+  sections
+  - Max-width of 720px — appropriate for long-form reading, narrower than the
+  1200px layout grid
+
+✻ Baked for 24s
+
+! git add .                                                                     
+  ⎿  (Bash completed with no output)
+
+! git commit -m "landing: add terms and conditions page and route"              
+  ⎿  [main c746208] landing: add terms and conditions page and route
+      4 files changed, 91 insertions(+), 1 deletion(-)
+      create mode 100644 templates/terms.html
+
+❯ Do the same as you did for the Terms and Conditions page,                     
+  but for Privacy Policy.                                                       
+                                                                                
+  1. Add a new route in [@app.py](http://app.py/):                              
+  GET /privacy → renders templates/privacy.html                                 
+  2. Create templates/privacy.html with generic privacy policy                  
+  content appropriate for a personal expense tracking app.                      
+  Include sections like: Data We Collect, How We Use Your Data,                 
+  Data Storage, Third Party Services, and Contact Us.                           
+  Match the style of terms.html.                                                
+  3. In @templates/landing.html, update the "Privacy Policy"                    
+  footer link href from "#" to "/privacy".                                      
+  4. Make sure the appearance looks like the website's theme                    
+  ⎿  Read templates/landing.html (93 lines)
+  ⎿  ⧉ Selected 13 lines from file.txt in Visual Studio Code
+
+⏺ The terms CSS classes already cover this — I'll reuse them. All three changes
+  in parallel.
+
+⏺ Update(app.py)
+  ⎿  Added 5 lines
+      31      return render_template("terms.html")
+      32  
+      33  
+      34 +@app.route("/privacy")                                         
+      35 +def privacy():                                                 
+      36 +    return render_template("privacy.html")                     
+      37 +                                                               
+      38 +                                                               
+      39  @app.route("/logout")
+      40  def logout():
+      41      return "Logout — coming in Step 3"
+
+⏺ Write(templates/privacy.html)
+  ⎿  Wrote 39 lines to templates/privacy.html
+       1 {% extends "base.html" %}
+       2 
+       3 {% block title %}Privacy Policy — Spendly{% endblock %}
+       4 
+       5 {% block content %}
+       6 
+       7 <section class="terms-page">
+       8     <div class="terms-inner">
+       9         <h1 class="terms-title">Privacy Policy</h1>
+      10         <p class="terms-updated">Last updated: June 2026</p>
+     … +47 lines (ctrl+o to expand)
+
+⏺ Update(templates/base.html)
+  ⎿  Added 1 line, removed 1 line
+      35              <span class="footer-name">Spendly</span>
+      36              <p class="footer-copy">Track every rupee. Own your 
+          finances.</p>
+      37              <a href="/terms">Terms and Conditions</a>
+      38 -            <a href="#">Privacy Policy</a>                     
+      38 +            <a href="/privacy">Privacy Policy</a>              
+      39          </div>
+      40      </footer>
+      41  
+
+⏺ Done. All three changes applied:
+
+  - app.py — added GET /privacy route
+  - templates/privacy.html — created with five sections (Data We Collect, How We
+  Use Your Data, Data Storage, Third Party Services, Contact Us), reusing the
+  same .terms-page / .terms-inner / .terms-section classes so the styling is
+  identical
+  - templates/base.html — updated the Privacy Policy footer link to /privacy
+
+✻ Cogitated for 16s
+
+! git add .                                                                     
+  ⎿  (Bash completed with no output)
+
+! git commit -m "landing: add privacy policy page and route"                    
+  ⎿  [main 0862b5a] landing: add privacy policy page and route
+      3 files changed, 45 insertions(+), 1 deletion(-)
+      create mode 100644 templates/privacy.html
+
+❯ [Image #1] I've attached a screenshot of the updated Spendly hero section     
+  design.                                                                       
+                                                                                
+  Modify only the hero section in @templates/landing.html and                   
+  @static/css/landing.css                                                       
+  to match this image exactly. Do not touch any other part of the page.         
+  ⎿  [Image #1]
+  ⎿  Read templates/landing.html (93 lines)
+
+⏺ Let me check if landing.css already exists before making changes.
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ landing.css doesn't exist yet — I'll create it. Now I'll update the hero in
+  landing.html and create the stylesheet in parallel.
+
+⏺ Update(templates/landing.html)
+  ⎿  Added 4 lines
+       2  
+       3  {% block title %}Spendly — Track Every Rupee{% endblock %}
+       4  
+       5 +{% block head %}                                               
+       6 +<link rel="stylesheet" href="{{ url_for('static', filename='css
+         +/landing.css') }}">                                            
+       7 +{% endblock %}                                                 
+       8 +                                                               
+       9  {% block content %}
+      10  
+      11  <section class="hero">
+⏺ Update(templates/landing.html)
+  ⎿  Added 46 lines, removed 42 lines
+       8  
+       9  {% block content %}
+      10  
+      11 -<section class="hero">                                         
+      12 -    <div class="hero-inner">                                   
+      13 -        <div class="hero-badge">Personal Finance Tracker</div> 
+      14 -        <h1 class="hero-title">                                
+      15 -            Know where your<br>                                
+      16 -            <em>money goes</em>                                
+      11 +<section class="lp-hero">                                      
+      12 +    <div class="lp-hero-inner">                                
+      13 +        <div class="lp-badge">                                 
+      14 +            <span class="lp-badge-dot"></span>                 
+      15 +            Free to use · No credit card needed                
+      16 +        </div>                                                 
+      17 +        <h1 class="lp-title">                                  
+      18 +            Track every rupee.<br>                             
+      19 +            <span class="lp-title-accent">Know where it goes.</
+         +span>                                                          
+      20          </h1>
+      18 -        <p class="hero-subtitle">                              
+      19 -            Log expenses, understand your spending patterns,   
+      20 -            and take control of your financial life —          
+      21 -            one transaction at a time.                         
+      21 +        <p class="lp-subtitle">                                
+      22 +            Spendly helps you log expenses, spot patterns, and 
+         +stay                                                           
+      23 +            on budget — without the spreadsheet headache.      
+      24          </p>
+      23 -        <div class="hero-actions">                             
+      24 -            <a href="{{ url_for('register') }}" class="btn-prim
+         -ary">Start tracking free</a>                                   
+      25 -            <a href="{{ url_for('login') }}" class="btn-ghost">
+         -Sign in</a>                                                    
+      25 +        <div class="lp-actions">                               
+      26 +            <a href="{{ url_for('register') }}" class="lp-btn">
+         +Create free account</a>                                        
+      27 +            <a href="#" class="lp-btn">See how it works</a>    
+      28          </div>
+      27 -    </div>                                                     
+      28 -    <div class="hero-visual">                                  
+      29 -        <div class="mock-card">                                
+      30 -            <div class="mock-card-header">                     
+      31 -                <span class="mock-label">March 2026</span>     
+      32 -                <span class="mock-total">₹12,450</span>        
+      29 +        <div class="lp-mockup">                                
+      30 +            <div class="lp-chrome">                            
+      31 +                <span class="lp-dot lp-dot-red"></span>        
+      32 +                <span class="lp-dot lp-dot-yellow"></span>     
+      33 +                <span class="lp-dot lp-dot-green"></span>      
+      34              </div>
+      34 -            <div class="mock-bars">                            
+      35 -                <div class="mock-bar-row">                     
+      36 -                    <span class="mock-cat">Bills</span>        
+      37 -                    <div class="mock-bar-track">               
+      38 -                        <div class="mock-bar" style="width: 72%
+         -"></div>                                                       
+      35 +            <div class="lp-mockup-body">                       
+      36 +                <div class="lp-stats">                         
+      37 +                    <div class="lp-stat">                      
+      38 +                        <div class="lp-stat-label">This month</
+         +div>                                                           
+      39 +                        <div class="lp-stat-value">₹18,240</div
+         +>                                                              
+      40 +                        <div class="lp-stat-tag lp-tag-danger">
+         ++12% vs last</div>                                             
+      41                      </div>
+      40 -                    <span class="mock-amt">₹4,500</span>       
+      41 -                </div>                                         
+      42 -                <div class="mock-bar-row">                     
+      43 -                    <span class="mock-cat">Food</span>         
+      44 -                    <div class="mock-bar-track">               
+      45 -                        <div class="mock-bar mock-bar-2" style=
+         -"width: 52%"></div>                                            
+      42 +                    <div class="lp-stat">                      
+      43 +                        <div class="lp-stat-label">Budget left<
+         +/div>                                                          
+      44 +                        <div class="lp-stat-value">₹6,760</div>
+      45 +                        <div class="lp-stat-tag lp-tag-success"
+         +>43% remaining</div>                                           
+      46                      </div>
+      47 -                    <span class="mock-amt">₹3,200</span>       
+      48 -                </div>                                         
+      49 -                <div class="mock-bar-row">                     
+      50 -                    <span class="mock-cat">Health</span>       
+      51 -                    <div class="mock-bar-track">               
+      52 -                        <div class="mock-bar mock-bar-3" style=
+         -"width: 33%"></div>                                            
+      47 +                    <div class="lp-stat">                      
+      48 +                        <div class="lp-stat-label">Transactions
+         +</div>                                                         
+      49 +                        <div class="lp-stat-value">34</div>    
+      50 +                        <div class="lp-stat-tag">this month</di
+         +v>                                                             
+      51                      </div>
+      54 -                    <span class="mock-amt">₹2,050</span>       
+      52                  </div>
+      56 -                <div class="mock-bar-row">                     
+      57 -                    <span class="mock-cat">Transport</span>    
+      58 -                    <div class="mock-bar-track">               
+      59 -                        <div class="mock-bar mock-bar-4" style=
+         -"width: 28%"></div>                                            
+      53 +                <div class="lp-bars">                          
+      54 +                    <div class="lp-bar-row">                   
+      55 +                        <span class="lp-bar-label">Food</span> 
+      56 +                        <div class="lp-bar-track"><div class="l
+         +p-bar lp-bar-amber" style="width:78%"></div></div>             
+      57                      </div>
+      61 -                    <span class="mock-amt">₹1,800</span>       
+      58 +                    <div class="lp-bar-row">                   
+      59 +                        <span class="lp-bar-label">Travel</span
+         +>                                                              
+      60 +                        <div class="lp-bar-track"><div class="l
+         +p-bar lp-bar-blue" style="width:57%"></div></div>              
+      61 +                    </div>                                     
+      62 +                    <div class="lp-bar-row">                   
+      63 +                        <span class="lp-bar-label">Bills</span>
+      64 +                        <div class="lp-bar-track"><div class="l
+         +p-bar lp-bar-indigo" style="width:44%"></div></div>            
+      65 +                    </div>                                     
+      66                  </div>
+      67              </div>
+      68          </div>
+
+⏺ Write(static/css/landing.css)
+  ⎿  Wrote 205 lines to static/css/landing.css
+        ---- */----------------------------------------------------------
+      2 /* Landing page — hero section                                   
+              */
+      3 /* --------------------------------------------------------------
+        ---- */
+      5 .lp-hero {
+      6     padding: 5rem 2rem 6rem;
+      7     text-align: center;
+      8     background: #fff;
+      9 }
+     … +198 lines (ctrl+o to expand)
+
+⏺ Done. Here's what changed:
+
+  templates/landing.html
+  - Added {% block head %} to load landing.css
+  - Replaced the two-column hero with a centered single-column layout: pill
+  badge → two-line serif title (second line in accent green) → subtitle → two
+  black CTA buttons → browser-style mockup card
+
+  static/css/landing.css (new file)
+  - All hero styles scoped under lp-* prefixes to avoid conflicts with style.css
+  - Badge: accent-light background with green dot and subtle border
+  - Title: DM Serif Display at clamp(2.75rem, 6vw, 4.5rem), second line inherits
+  accent green via .lp-title-accent
+  - Both CTA buttons: same solid black style, border-radius: 10px, hover turns
+  accent green
+  - Mockup: warm paper background, macOS traffic-light dots, 3-column stat cards
+  with danger/success tags, horizontal bar chart with amber/blue/indigo bars
+
+✻ Baked for 2m 3s
+
+! git add .                                                                     
+  ⎿  (Bash completed with no output)
+
+! git commit -m "landing: redesign hero section to match mockup"                
+  ⎿  [main 3b99e73] landing: redesign hero section to match mockup
+      2 files changed, 255 insertions(+), 42 deletions(-)
+      create mode 100644 static/css/landing.css
+
+❯ Add a modal to @templates/landing.html that opens when the user clicks        
+  "See how it works".                                                           
+                                                                                
+  Requirements:                                                                 
+                                                                                
+  - Clicking "See how it works" opens a modal overlay                           
+  - Modal contains an embedded YouTube video (use any placeholder YouTube URL   
+  for now, I will replace it later)                                             
+  - Video should be playable inside the modal                                   
+  - Clicking the close button OR clicking outside the modal closes it           
+  - When the modal closes, the video must stop playing (not continue in         
+  background)                                                                   
+  - No page libraries or dependencies — vanilla JS only, since we are not       
+  using any JS framework in this project                                        
+                                                                                
+  Do not modify any other part of the page.                                     
+  ⎿  Read templates/landing.html (101 lines)
+
+⏺ I'll add the modal in two rounds: first add id to the trigger button and the
+  modal CSS, then add the modal HTML and JS.
+
+⏺ Update(templates/landing.html)
+  ⎿  Added 1 line, removed 1 line
+      24          </p>
+      25          <div class="lp-actions">
+      26              <a href="{{ url_for('register') }}" class="lp-btn">
+          Create free account</a>
+      27 -            <a href="#" class="lp-btn">See how it works</a>    
+      27 +            <a href="#" class="lp-btn" id="ytTrigger">See how i
+         +t works</a>                                                    
+      28          </div>
+      29          <div class="lp-mockup">
+      30              <div class="lp-chrome">
+
+⏺ Update(static/css/landing.css)
+  ⎿  Added 57 lines
+      198  .lp-bar-blue   { background: #4a90d9; }
+      199  .lp-bar-indigo { background: #7c6fcf; }
+      200  
+      201 +/* -----------------------------------------------------------
+          +------- */                                                    
+      202 +/* YouTube modal                                              
+          +          */                                                  
+      203 +/* -----------------------------------------------------------
+          +------- */                                                    
+      204 +                                                              
+      205 +.yt-modal {                                                   
+      206 +    position: fixed;                                          
+      207 +    inset: 0;                                                 
+      208 +    background: rgba(0, 0, 0, 0.75);                          
+      209 +    z-index: 1000;                                            
+      210 +    display: flex;                                            
+      211 +    align-items: center;                                      
+      212 +    justify-content: center;                                  
+      213 +    padding: 2rem;                                            
+      214 +}                                                             
+      215 +                                                              
+      216 +.yt-modal[hidden] { display: none; }                          
+      217 +                                                              
+      218 +.yt-modal-box {                                               
+      219 +    position: relative;                                       
+      220 +    width: 100%;                                              
+      221 +    max-width: 820px;                                         
+      222 +    background: #000;                                         
+      223 +    border-radius: var(--radius-md);                          
+      224 +    overflow: hidden;                                         
+      225 +}                                                             
+      226 +                                                              
+      227 +.yt-modal-close {                                             
+      228 +    position: absolute;                                       
+      229 +    top: -2.75rem;                                            
+      230 +    right: 0;                                                 
+      231 +    background: none;                                         
+      232 +    border: none;                                             
+      233 +    color: #fff;                                              
+      234 +    font-size: 1.75rem;                                       
+      235 +    line-height: 1;                                           
+      236 +    cursor: pointer;                                          
+      237 +    padding: 0.25rem 0.5rem;                                  
+      238 +    opacity: 0.85;                                            
+      239 +    transition: opacity 0.15s;                                
+      240 +}                                                             
+      241 +                                                              
+      242 +.yt-modal-close:hover { opacity: 1; }                         
+      243 +                                                              
+      244 +.yt-embed-wrap {                                              
+      245 +    position: relative;                                       
+      246 +    padding-bottom: 56.25%;                                   
+      247 +    height: 0;                                                
+      248 +}                                                             
+      249 +                                                              
+      250 +.yt-embed-wrap iframe {                                       
+      251 +    position: absolute;                                       
+      252 +    inset: 0;                                                 
+      253 +    width: 100%;                                              
+      254 +    height: 100%;                                             
+      255 +    border: none;                                             
+      256 +}                                                             
+      257 +                                                              
+      258  /* Responsive */
+      259  @media (max-width: 700px) {
+      260      .lp-stats { grid-template-columns: 1fr; }
+
+⏺ Now add the modal HTML and the JS block to landing.html.
+
+⏺ Update(templates/landing.html)
+  ⎿  Error editing file
+
+⏺ Update(templates/landing.html)
+  ⎿  Added 54 lines
+       97      </div>
+       98  </section>
+       99  
+      100 +<!-- YouTube modal -->                                        
+      101 +<div class="yt-modal" id="ytModal" hidden>                    
+      102 +    <div class="yt-modal-box">                                
+      103 +        <button class="yt-modal-close" id="ytModalClose" aria-
+          +label="Close">&#x2715;</button>                               
+      104 +        <div class="yt-embed-wrap">                           
+      105 +            <iframe id="ytIframe"                             
+      106 +                src=""                                        
+      107 +                title="How Spendly works"                     
+      108 +                allow="accelerometer; autoplay; clipboard-writ
+          +e; encrypted-media; gyroscope; picture-in-picture"            
+      109 +                allowfullscreen>                              
+      110 +            </iframe>                                         
+      111 +        </div>                                                
+      112 +    </div>                                                    
+      113 +</div>                                                        
+      114 +                                                              
+      115  {% endblock %}
+      116 +                                                              
+      117 +{% block scripts %}                                           
+      118 +<script>                                                      
+      119 +(function () {                                                
+      120 +    var YT_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ?en
+          +ablejsapi=1';                                                 
+      121 +    var modal    = document.getElementById('ytModal');        
+      122 +    var iframe   = document.getElementById('ytIframe');       
+      123 +    var trigger  = document.getElementById('ytTrigger');      
+      124 +    var closeBtn = document.getElementById('ytModalClose');   
+      125 +                                                              
+      126 +    function openModal() {                                    
+      127 +        iframe.src = YT_URL;                                  
+      128 +        modal.removeAttribute('hidden');                      
+      129 +        document.body.style.overflow = 'hidden';              
+      130 +    }                                                         
+      131 +                                                              
+      132 +    function closeModal() {                                   
+      133 +        iframe.src = '';                                      
+      134 +        modal.setAttribute('hidden', '');                     
+      135 +        document.body.style.overflow = '';                    
+      136 +    }                                                         
+      137 +                                                              
+      138 +    trigger.addEventListener('click', function (e) {          
+      139 +        e.preventDefault();                                   
+      140 +        openModal();                                          
+      141 +    });                                                       
+      142 +                                                              
+      143 +    closeBtn.addEventListener('click', closeModal);           
+      144 +                                                              
+      145 +    modal.addEventListener('click', function (e) {            
+      146 +        if (e.target === modal) closeModal();                 
+      147 +    });                                                       
+      148 +                                                              
+      149 +    document.addEventListener('keydown', function (e) {       
+      150 +        if (e.key === 'Escape' && !modal.hasAttribute('hidden'
+          +)) closeModal();                                              
+      151 +    });                                                       
+      152 +}());                                                         
+      153 +</script>                                                     
+      154 +{% endblock %}                                                
+
+⏺ Done. Here's what was added:
+
+  templates/landing.html
+  - id="ytTrigger" on the "See how it works" button
+  - Modal HTML (<div class="yt-modal" hidden>) placed just before {% endblock %}
+  — the iframe starts with src="" so no network request until the modal opens
+  - {% block scripts %} with a self-contained IIFE: opens by setting the iframe
+  src, closes by clearing it (which stops playback immediately), also wires up
+  Escape key and outside-click dismissal
+
+  static/css/landing.css
+  - Fixed overlay with dark backdrop
+  - Centered box (max 820px) with a 16:9 responsive iframe via padding-bottom
+  trick
+  - Close button floats above the top-right corner of the box in white
+
+  To swap in your real video later, just replace dQw4w9WgXcQ in the YT_URL
+  variable with your YouTube video ID.
+
+✻ Baked for 1m 13s
+
+! git add .                                                                     
+  ⎿  (Bash completed with no output)
+
+! git commit -m "landing: add youtube modal on see how it works click"          
+  ⎿  [main dd8b2b9] landing: add youtube modal on see how it works click
+      2 files changed, 126 insertions(+), 7 deletions(-)
+
+! git push                                                                      
+  ⎿  fatal: The current branch main has no upstream branch.
+     To push the current branch and set the remote as upstream, use
+     … +4 lines (ctrl+o to expand)
+
+! git push origin main                                                          
+  ⎿  To https://github.com/swapnilndia/spendly.git
+        7efc973..dd8b2b9  main -> main
+
+❯ /usage 
+  ⎿  Settings dialog dismissed
+
+❯ /insights                                                                     
+
+⏺ Your shareable insights report is ready:
+  file:///Users/swapnilkatiyar/.claude/usage-data/report-2026-06-13-203335.html
+
+  Want to dig into any section or try one of the suggestions?
+
+✻ Crunched for 4s
